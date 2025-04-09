@@ -3,19 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SUPER30</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>My Portfolio</title>
+    <style>
+         .navbar ul {
+            background-color: aquamarine;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: flex-end;
+            list-style-type: none;
+        }
+        
+        .navbar li {
+            margin: auto 15px;
+        }
+        
+        .navbar a {
+            color: black;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 5px 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar a:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        
-<li class="menu"></li>
-<li class="menu"></li>
-<li class="menu"></li>
-<li class="menu"></li>
-<li class="menu"></li>
-<li class="menu"></li>
+    <!-- Header Section -->
+    <header>
+        <nav class="navbar" >
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#interests">Interests</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
 
-    </div>
+    
+    <h1>Rohan Sharma</h1>
+
+    <!-- Main Content -->
+    <main>
+        <!-- About Section -->
+        <section id="about">
+            <h2>About Me</h2>
+            <p class="center-text">Hello! I'm Rohan, a student at XYZ School. I'm passionate about technology and want to become a web developer.</p>
+            <img src="rohan-pic.jpg" alt="Rahul Sharma's photo" style="width: 15rem; height: 15rem;">
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>My Skills</h2>
+            <ul style="display:flex ; list-style-type: none; gap: 2rem;">
+                <li>HTML (Advance)</li>
+                <li>Photography</li>
+                <li>Machine Learning</li>
+                <li>Public Speaking (learning)</li>
+            </ul>
+        </section>
+
+        <!-- Interests Section -->
+        <section id="interests">
+            <h2>My Interests</h2>
+            <ol>
+                <li>Web Development</li>
+                <li>Gaming</li>
+                <li>Reading Science Fiction</li>
+                <li>Playing Cricket</li>
+            </ol>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="contact">
+        <h2>Contact Me</h2>
+        <p>Email: rohan@example.com</p>
+        <p>Phone: 123-456-7890</p>
+        <p>&copy; 2025 Rohan Sharma</p>
+    </footer>
 </body>
 </html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Box Model Demonstration</title>
+    <style>
+        /* Base styles */
+        :root {
+            font-size: 16px; /* Base font size for rem calculations */
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            padding: 2rem;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+        
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem;
+        }
+        
+        /* Card styles for different units */
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            position: relative;
+        }
+        
+        .card-title {
+            text-align: center;
+            font-weight: bold;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .box-model-container {
+            position: relative;
+            padding: 15px;
+        }
+        
+        /* Common content styles */
+        .content {
+            background-color: #f8f9fa;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+        }
+        
+        /* Labels for each part of the box model */
+        .margin-label, .border-label, .padding-label, .content-label {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            z-index: 10;
+        }
+        
+        /* Control panel styles */
+        .control-panel {
+            margin-top: 3rem;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .control-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .control-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .control-inputs {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            padding: 0.5rem 1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        /* Card specific styles */
+        
+        /* Pixels Card */
+        #pixels-card .box {
+            /* Default starting state */
+            margin: 16px;
+            border: 5px solid #ff6b6b;
+            padding: 15px;
+        }
+        
+        /* REM Card */
+        #rem-card .box {
+            /* Default starting state */
+            margin: 1rem; /* 20px at 16px base font size */
+            border: 0.3125rem solid #4ecdc4; /* 5px */
+            padding: 0.9375rem; /* 15px */
+        }
+        
+        /* EM Card */
+        #em-card {
+            font-size: 18px; /* Base for em calculations */
+        }
+        
+        #em-card .box {
+            /* Default starting state */
+            margin: 1.1em; /* ~20px when parent is 18px */
+            border: 0.28em solid #f9dc5c; /* ~5px */
+            padding: 0.83em; /* ~15px */
+        }
+        
+        /* Percentage Card */
+        #percentage-card .box-model-container {
+            height: 180px;
+        }
+        
+        #percentage-card .box {
+            /* Default starting state */
+            margin: 10%; /* Percentage of parent width */
+            border: 2% solid #9b5de5; /* Percentage of parent width */
+            padding: 5%; /* Percentage of parent width */
+            height: 60%; /* Percentage of parent height */
+        }
+        
+        /* Labels placement */
+        .margin-label {
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .border-label {
+            top: 25px;
+            right: 10px;
+        }
+        
+        .padding-label {
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .content-label {
+            bottom: 50%;
+            left: 50%;
+            transform: translate(-50%, 50%);
+        }
+        
+        /* Unit indicators */
+        .unit {
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+            background-color: #333;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.75rem;
+        }
+        
+        /* Colored backgrounds to visualize different parts */
+        .margin-area {
+            background-color: rgba(255, 230, 230, 0.5);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+        }
+        
+        .border-area {
+            background-color: rgba(230, 255, 230, 0.5);
+            position: absolute;
+            z-index: 2;
+        }
+        
+        .padding-area {
+            background-color: rgba(230, 230, 255, 0.5);
+            position: absolute;
+            z-index: 3;
+        }
+        
+        /* Explanations section */
+        .explanation {
+            margin-top: 3rem;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .explanation h2 {
+            color: #333;
+            margin-top: 0;
+        }
+        
+        .explanation p {
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Box Model Demonstration</h1>
+    
+    <div class="container">
+        <!-- Pixels Card -->
+        <div class="card" id="pixels-card">
+            <div class="card-title">Pixels (px)</div>
+            <div class="box-model-container">
+                <div class="margin-area"></div>
+                <div class="box">
+                    <div class="border-area"></div>
+                    <div class="padding-area"></div>
+                    <div class="content">Content</div>
+                </div>
+                <div class="margin-label">margin: 20px</div>
+                <div class="border-label">border: 5px</div>
+                <div class="padding-label">padding: 15px</div>
+                <div class="content-label">content</div>
+                <div class="unit">px</div>
+            </div>
+        </div>
+        
+        <!-- REM Card -->
+        <div class="card" id="rem-card">
+            <div class="card-title">Root EM (rem)</div>
+            <div class="box-model-container">
+                <div class="margin-area"></div>
+                <div class="box">
+                    <div class="border-area"></div>
+                    <div class="padding-area"></div>
+                    <div class="content">Content</div>
+                </div>
+                <div class="margin-label">margin: 1rem</div>
+                <div class="border-label">border: 0.31rem</div>
+                <div class="padding-label">padding: 0.94rem</div>
+                <div class="content-label">content</div>
+                <div class="unit">rem</div>
+            </div>
+        </div>
+        
+        <!-- EM Card -->
+        <div class="card" id="em-card">
+            <div class="card-title">EM</div>
+            <div class="box-model-container">
+                <div class="margin-area"></div>
+                <div class="box">
+                    <div class="border-area"></div>
+                    <div class="padding-area"></div>
+                    <div class="content">Content</div>
+                </div>
+                <div class="margin-label">margin: 1.1em</div>
+                <div class="border-label">border: 0.28em</div>
+                <div class="padding-label">padding: 0.83em</div>
+                <div class="content-label">content</div>
+                <div class="unit">em</div>
+            </div>
+        </div>
+        
+        <!-- Percentage Card -->
+        <div class="card" id="percentage-card">
+            <div class="card-title">Percentage (%)</div>
+            <div class="box-model-container">
+                <div class="margin-area"></div>
+                <div class="box">
+                    <div class="border-area"></div>
+                    <div class="padding-area"></div>
+                    <div class="content">Content</div>
+                </div>
+                <div class="margin-label">margin: 10%</div>
+                <div class="border-label">border: 2%</div>
+                <div class="padding-label">padding: 5%</div>
+                <div class="content-label">content</div>
+                <div class="unit">%</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Control Panel -->
+    <div class="control-panel">
+        <h2>Control Panel</h2>
+        
+        <div class="control-group">
+            <div class="control-title">Margin</div>
+            <div class="control-inputs">
+                <button onclick="updateProperty('margin', '10px', '0.625rem', '0.55em', '5%')">Small</button>
+                <button onclick="updateProperty('margin', '20px', '1.25rem', '1.1em', '10%')">Medium</button>
+                <button onclick="updateProperty('margin', '40px', '2.5rem', '2.2em', '20%')">Large</button>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <div class="control-title">Border</div>
+            <div class="control-inputs">
+                <button onclick="updateProperty('border', '2px solid #ff6b6b', '0.125rem solid #4ecdc4', '0.11em solid #f9dc5c', '1% solid #9b5de5')">Thin</button>
+                <button onclick="updateProperty('border', '5px solid #ff6b6b', '0.3125rem solid #4ecdc4', '0.28em solid #f9dc5c', '2% solid #9b5de5')">Medium</button>
+                <button onclick="updateProperty('border', '10px solid #ff6b6b', '0.625rem solid #4ecdc4', '0.55em solid #f9dc5c', '4% solid #9b5de5')">Thick</button>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <div class="control-title">Padding</div>
+            <div class="control-inputs">
+                <button onclick="updateProperty('padding', '5px', '0.3125rem', '0.28em', '2%')">Small</button>
+                <button onclick="updateProperty('padding', '15px', '0.9375rem', '0.83em', '5%')">Medium</button>
+                <button onclick="updateProperty('padding', '30px', '1.875rem', '1.67em', '10%')">Large</button>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <div class="control-title">Root Font Size (affects rem)</div>
+            <div class="control-inputs">
+                <button onclick="updateRootFontSize(12)">12px</button>
+                <button onclick="updateRootFontSize(16)">16px</button>
+                <button onclick="updateRootFontSize(20)">20px</button>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <div class="control-title">EM Parent Font Size (affects em)</div>
+            <div class="control-inputs">
+                <button onclick="updateEmParentSize(14)">14px</button>
+                <button onclick="updateEmParentSize(18)">18px</button>
+                <button onclick="updateEmParentSize(22)">22px</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Explanation Section -->
+    <div class="explanation">
+        <h2>Understanding the CSS Box Model</h2>
+        
+        <h3>What is the Box Model?</h3>
+        <p>The CSS Box Model is a fundamental concept that describes how elements are rendered on a webpage. Every HTML element is a rectangular box that consists of content, padding, border, and margin.</p>
+        
+        <h3>Components of the Box Model:</h3>
+        <p><strong>Content:</strong> The actual content of the element (text, images, etc.).</p>
+        <p><strong>Padding:</strong> The space between the content and the border. Think of it as cushioning inside the box.</p>
+        <p><strong>Border:</strong> The line that surrounds the padding and content.</p>
+        <p><strong>Margin:</strong> The space outside the border, which creates distance from other elements.</p>
+        
+        <h3>CSS Units Explained:</h3>
+        <p><strong>px (Pixels):</strong> Fixed-size units that are the same regardless of other settings. Most precise but not responsive.</p>
+        <p><strong>rem (Root EM):</strong> Relative to the font-size of the root element (html). If root font-size is 16px, then 1rem = 16px.</p>
+        <p><strong>em:</strong> Relative to the font-size of the parent element. If parent font-size is 18px, then 1em = 18px.</p>
+        <p><strong>% (Percentage):</strong> Relative to the parent element's dimensions. For horizontal properties, % is based on parent's width.</p>
+        
+        <h3>When to Use Each Unit:</h3>
+        <p><strong>px:</strong> Use for precise control when you need exact measurements that never change.</p>
+        <p><strong>rem:</strong> Best for responsive designs. Allows users to scale the entire site by changing browser font size.</p>
+        <p><strong>em:</strong> Useful for creating elements that scale relative to their parent's font size.</p>
+        <p><strong>%:</strong> Great for responsive layouts and creating elements that scale with their container.</p>
+    </div>
+    
+    <script>
+        // Initial setup
+        document.addEventListener('DOMContentLoaded', function() {
+            updateVisuals();
+        });
+        
+        // Update CSS property for all cards
+        function updateProperty(property, pxValue, remValue, emValue, percentValue) {
+            const pxBox = document.querySelector('#pixels-card .box');
+            const remBox = document.querySelector('#rem-card .box');
+            const emBox = document.querySelector('#em-card .box');
+            const percentBox = document.querySelector('#percentage-card .box');
+            
+            // Update CSS property
+            pxBox.style[property] = pxValue;
+            remBox.style[property] = remValue;
+            emBox.style[property] = emValue;
+            percentBox.style[property] = percentValue;
+            
+            // Update labels
+            document.querySelector('#pixels-card .' + property + '-label').textContent = property + ': ' + pxValue;
+            document.querySelector('#rem-card .' + property + '-label').textContent = property + ': ' + remValue;
+            document.querySelector('#em-card .' + property + '-label').textContent = property + ': ' + emValue;
+            document.querySelector('#percentage-card .' + property + '-label').textContent = property + ': ' + percentValue;
+            
+            updateVisuals();
+        }
+        
+        // Update root font size (affects rem)
+        function updateRootFontSize(size) {
+            document.documentElement.style.fontSize = size + 'px';
+            updateVisuals();
+        }
+        
+        // Update em parent size (affects em)
+        function updateEmParentSize(size) {
+            document.getElementById('em-card').style.fontSize = size + 'px';
+            updateVisuals();
+        }
+        
+        // Update visual representation of box model parts
+        function updateVisuals() {
+            const cards = ['pixels-card', 'rem-card', 'em-card', 'percentage-card'];
+            
+            cards.forEach(cardId => {
+                const container = document.querySelector('#' + cardId + ' .box-model-container');
+                const box = document.querySelector('#' + cardId + ' .box');
+                const marginArea = document.querySelector('#' + cardId + ' .margin-area');
+                const borderArea = document.querySelector('#' + cardId + ' .border-area');
+                const paddingArea = document.querySelector('#' + cardId + ' .padding-area');
+                
+                // Get computed styles
+                const boxStyles = window.getComputedStyle(box);
+                const marginTop = parseInt(boxStyles.marginTop);
+                const marginRight = parseInt(boxStyles.marginRight);
+                const marginBottom = parseInt(boxStyles.marginBottom);
+                const marginLeft = parseInt(boxStyles.marginLeft);
+                
+                const borderTop = parseInt(boxStyles.borderTopWidth);
+                const borderRight = parseInt(boxStyles.borderRightWidth);
+                const borderBottom = parseInt(boxStyles.borderBottomWidth);
+                const borderLeft = parseInt(boxStyles.borderLeftWidth);
+                
+                const paddingTop = parseInt(boxStyles.paddingTop);
+                const paddingRight = parseInt(boxStyles.paddingRight);
+                const paddingBottom = parseInt(boxStyles.paddingBottom);
+                const paddingLeft = parseInt(boxStyles.paddingLeft);
+                
+                // Position the border area inside the box
+                borderArea.style.top = borderTop + 'px';
+                borderArea.style.right = borderRight + 'px';
+                borderArea.style.bottom = borderBottom + 'px';
+                borderArea.style.left = borderLeft + 'px';
+                
+                // Position the padding area inside the border
+                paddingArea.style.top = borderTop + 'px';
+                paddingArea.style.right = borderRight + 'px';
+                paddingArea.style.bottom = borderBottom + 'px';
+                paddingArea.style.left = borderLeft + 'px';
+                
+                // Update labels with computed values if needed
+                if (cardId === 'pixels-card') {
+                    document.querySelector('#pixels-card .margin-label').textContent = `margin: ${marginTop}px`;
+                    document.querySelector('#pixels-card .border-label').textContent = `border: ${borderTop}px`;
+                    document.querySelector('#pixels-card .padding-label').textContent = `padding: ${paddingTop}px`;
+                }
+            });
+        }
+    </script>
+</body>
+</html>
