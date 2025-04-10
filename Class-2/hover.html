@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors Interactive Demo</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .description {
+            margin-bottom: 20px;
+        }
+
+        .demo-container {
+            background-color: white;
+            border-radius: 5px;
+            padding: 15px;
+            border: 1px solid #ddd;
+        }
+
+        /* nth-child demo styles */
+        .nth-child-demo .item-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nth-child-demo .item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .selector-control {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        select, button {
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            background-color: white;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        code {
+            background-color: #f1f1f1;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+
+        .selector-display {
+            font-family: monospace;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #2c3e50;
+            color: white;
+            border-radius: 4px;
+        }
+
+        /* Hover demo styles */
+        .hover-demo .hover-box {
+            width: 150px;
+            height: 80px;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .hover-demo .hover-box:hover {
+            background-color: #2980b9;
+            transform: scale(1.1);
+        }
+
+        /* Active demo styles */
+        .active-demo .active-box {
+            width: 150px;
+            height: 80px;
+            background-color: #e74c3c;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .active-demo .active-box:active {
+            background-color: #c0392b;
+            transform: scale(0.95);
+        }
+
+        /* After demo styles */
+        .after-demo .after-box {
+            position: relative;
+            width: 150px;
+            height: 80px;
+            background-color: #2ecc71;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .after-demo .after-box::after {
+            content: "→";
+            position: absolute;
+            right: -20px;
+            font-size: 20px;
+            color: #2ecc71;
+            transition: all 0.3s ease;
+        }
+
+        .after-demo .after-box:hover::after {
+            right: -30px;
+        }
+
+        /* Combined demo styles */
+        .combined-demo .menu {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            background-color: #34495e;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .combined-demo .menu li {
+            padding: 15px 20px;
+            color: white;
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.3s;
+        }
+
+        .combined-demo .menu li:hover {
+            background-color: #2c3e50;
+        }
+
+        .combined-demo .menu li:active {
+            background-color: #1a252f;
+        }
+
+        .combined-demo .menu li:nth-child(odd) {
+            background-color: #3a536b;
+        }
+
+        .combined-demo .menu li::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: #e74c3c;
+            transition: width 0.3s ease;
+        }
+
+        .combined-demo .menu li:hover::after {
+            width: 100%;
+        }
+
+        .explanation {
+            margin-top: 15px;
+            font-style: italic;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive CSS Selectors Demo</h1>
+
+    <!-- :nth-child section -->
+    <div class="section nth-child-demo">
+        <h2>:nth-child Selector</h2>
+        <div class="description">
+            <p>The <code>:nth-child()</code> selector allows you to select elements based on their position within a parent element.</p>
+            <p>It can take various forms:</p>
+            <ul>
+                <li><code>:nth-child(3)</code> - selects the 3rd child</li>
+                <li><code>:nth-child(odd)</code> or <code>:nth-child(2n+1)</code> - selects odd children (1st, 3rd, 5th, etc.)</li>
+                <li><code>:nth-child(even)</code> or <code>:nth-child(2n)</code> - selects even children (2nd, 4th, 6th, etc.)</li>
+                <li><code>:nth-child(3n)</code> - selects every third child (3rd, 6th, 9th, etc.)</li>
+                <li><code>:nth-child(3n+1)</code> - selects every third child, starting from the first (1st, 4th, 7th, etc.)</li>
+            </ul>
+        </div>
+        <div class="demo-container">
+            <div class="item-container">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+                <div class="item">4</div>
+                <div class="item">5</div>
+                <div class="item">6</div>
+                <div class="item">7</div>
+                <div class="item">8</div>
+                <div class="item">9</div>
+                <div class="item">10</div>
+            </div>
+            <div class="selector-control">
+                <select id="nth-child-selector">
+                    <option value="n">All elements</option>
+                    <option value="1">1st child</option>
+                    <option value="3">3rd child</option>
+                    <option value="2n">Even children (2n)</option>
+                    <option value="2n+1">Odd children (2n+1)</option>
+                    <option value="3n">Every 3rd child (3n)</option>
+                    <option value="3n+1">Every 3rd child, starting from 1st (3n+1)</option>
+                    <option value="n+5">5th child and after (n+5)</option>
+                    <option value="-n+5">First 5 children (-n+5)</option>
+                </select>
+                <button id="apply-nth-child">Apply</button>
+            </div>
+            <div class="selector-display" id="nth-child-code">.item-container > .item:nth-child(n) { background-color: #3498db; color: white; }</div>
+            <div class="explanation">The highlighted items match the selected pattern.</div>
+        </div>
+    </div>
+
+    <!-- :hover section -->
+    <div class="section hover-demo">
+        <h2>:hover Selector</h2>
+        <div class="description">
+            <p>The <code>:hover</code> selector is triggered when the user hovers their mouse over an element.</p>
+            <p>It's commonly used for creating interactive elements like buttons, links, and menu items.</p>
+        </div>
+        <div class="demo-container">
+            <div class="hover-box">Hover Me!</div>
+            <div class="selector-display">.hover-box:hover { background-color: #2980b9; transform: scale(1.1); }</div>
+            <div class="explanation">Try hovering your mouse over the box above to see the effect!</div>
+        </div>
+    </div>
+
+    <!-- :active section -->
+    <div class="section active-demo">
+        <h2>:active Selector</h2>
+        <div class="description">
+            <p>The <code>:active</code> selector is triggered when an element is being activated by the user (e.g., when a button is being clicked).</p>
+            <p>It's often used to provide visual feedback during the clicking action.</p>
+        </div>
+        <div class="demo-container">
+            <div class="active-box">Click & Hold Me!</div>
+            <div class="selector-display">.active-box:active { background-color: #c0392b; transform: scale(0.95); }</div>
+            <div class="explanation">Try clicking and holding the button to see the :active state!</div>
+        </div>
+    </div>
+
+    <!-- ::after section -->
+    <div class="section after-demo">
+        <h2>::after Pseudo-element</h2>
+        <div class="description">
+            <p>The <code>::after</code> pseudo-element creates a virtual element that appears after the content of the selected element.</p>
+            <p>It must be used with the <code>content</code> property to specify what to insert.</p>
+            <p>It's useful for adding decorative elements without modifying the HTML structure.</p>
+        </div>
+        <div class="demo-container">
+            <div class="after-box">Hover Me</div>
+            <div class="selector-display">.after-box::after { content: "→"; position: absolute; right: -20px; }
+.after-box:hover::after { right: -30px; }</div>
+            <div class="explanation">Notice the arrow to the right of the box. Hover to see it move!</div>
+        </div>
+    </div>
+
+    <!-- Combined demo section -->
+    <div class="section combined-demo">
+        <h2>Combined Selectors</h2>
+        <div class="description">
+            <p>CSS selectors can be combined to create more complex and interesting effects.</p>
+            <p>Here's an example using <code>:nth-child</code>, <code>:hover</code>, <code>:active</code>, and <code>::after</code> together:</p>
+        </div>
+        <div class="demo-container">
+            <ul class="menu">
+                <li>Home</li>
+                <li>About</li>
+                <li>Services</li>
+                <li>Products</li>
+                <li>Contact</li>
+            </ul>
+            <div class="selector-display">.menu li:nth-child(odd) { background-color: #3a536b; }
+.menu li:hover { background-color: #2c3e50; }
+.menu li:active { background-color: #1a252f; }
+.menu li::after { content: ""; /* empty content */ }
+.menu li:hover::after { width: 100%; /* reveal the underline */ }</div>
+            <div class="explanation">
+                <p>Try hovering and clicking on the menu items to see different effects:</p>
+                <ul>
+                    <li>Odd-numbered items have a slightly different background (:nth-child)</li>
+                    <li>Items change color when hovered (:hover)</li>
+                    <li>Items darken when clicked (:active)</li>
+                    <li>A red underline appears when hovered (::after + :hover)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // nth-child demo interaction
+        document.getElementById('apply-nth-child').addEventListener('click', function() {
+            const selectorValue = document.getElementById('nth-child-selector').value;
+            const items = document.querySelectorAll('.nth-child-demo .item');
+            
+            // Reset all items
+            items.forEach(item => {
+                item.style.backgroundColor = '#ecf0f1';
+                item.style.color = '#333';
+            });
+            
+            // Apply the new selector
+            if (selectorValue !== 'n') {
+                const selectedItems = document.querySelectorAll(`.nth-child-demo .item:nth-child(${selectorValue})`);
+                selectedItems.forEach(item => {
+                    item.style.backgroundColor = '#3498db';
+                    item.style.color = 'white';
+                });
+            }
+            
+            // Update the code display
+            document.getElementById('nth-child-code').textContent = 
+                `.item-container > .item:nth-child(${selectorValue}) { background-color: #3498db; color: white; }`;
+        });
+
+        // Initialize the nth-child demo with the default value
+        document.getElementById('apply-nth-child').click();
+    </script>
+</body>
+</html>
