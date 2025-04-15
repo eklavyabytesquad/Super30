@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic CSS Animations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+
+
+        .box1{
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+        }
+        /* DIV ANIMATION */
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            margin: 30px;
+            /* Animation */
+            animation-name: moveBox;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+        }
+
+        /* Keyframes for div animation */
+        @keyframes moveBox {
+            0% {
+                transform: translateX(0) rotate(0deg);
+                background-color: #3498db;
+            }
+            50% {
+                transform: translateX(100px) rotate(180deg);
+                background-color: #e74c3c;
+            }
+            100% {
+                transform: translateX(0) rotate(360deg);
+                background-color: #3498db;
+            }
+        }
+
+        /* TEXT ANIMATION */
+        .animated-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            /* Animation */
+            animation-name: textEffect;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease;
+        }
+
+        /* Keyframes for text animation */
+        @keyframes textEffect {
+            0% {
+                color: #333;
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                color: #9b59b6;
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+            100% {
+                color: #333;
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Section styling */
+        .demo-section {
+            margin: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Basic CSS Animations</h1>
+
+    <div class="demo-section">
+        <h2>Div Animation</h2>
+        <div class="box1"></div>
+        <div class="box"></div>
+    </div>
+
+    <div class="demo-section">
+        <h2>Text Animation</h2>
+        <div class="animated-text">Animated Text</div>
+    </div>
+</body>
+</html>

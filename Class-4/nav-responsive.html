@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Navigation</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Base styles */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    
+    /* Navigation container */
+    .nav-container {
+      background-color: #333;
+      color: white;
+      padding: 1rem;
+    }
+    
+    /* Desktop navigation */
+    .nav-desktop {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    .nav-desktop .menu {
+      display: flex;
+      gap: 1.5rem;
+    }
+    
+    /* Mobile navigation (hidden by default) */
+    .nav-mobile {
+      text-align: center;
+      display: none;
+    }
+    
+    .nav-mobile .logo {
+      margin-bottom: 1rem;
+    }
+    
+    .nav-mobile .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    /* Media query for mobile screens */
+    @media (max-width: 640px) {
+      /* Hide desktop nav, show mobile nav */
+      .nav-desktop {
+        display: none;
+      }
+      
+      .nav-mobile {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-container">
+    <!-- Desktop Navigation -->
+    <div class="nav-desktop">
+      <div class="logo">Website Logo</div>
+      <div class="menu">
+        <div>Home</div>
+        <div>About</div>
+        <div>Services</div>
+        <div>Contact</div>
+      </div>
+    </div>
+    
+    <!-- Mobile Navigation -->
+    <div class="nav-mobile">
+      <div class="logo">Website Logo</div>
+      <div class="menu">
+        <div>Home</div>
+        <div>About</div>
+        <div>Services</div>
+        <div>Contact</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

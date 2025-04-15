@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Header</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      font-size: 16px;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    
+    h1 {
+      margin-bottom: 20px;
+    }
+    
+    .container {
+      display: flex;
+      gap: 20px;
+    }
+    
+    /* Non-responsive header (px) */
+    .header-px {
+      width: 500px; /* Fixed width */
+      border: 2px solid #ff6b6b;
+      padding: 20px;
+    }
+    
+    .header-px h2 {
+      font-size: 32px;
+      padding-bottom: 15px;
+    }
+    
+    .header-px p {
+      font-size: 16px;
+    }
+    
+    /* Responsive header (rem) */
+    .header-rem {
+      width: 100%; /* Full container width */
+      max-width: 31.25rem; /* 500px/16px = 31.25rem */
+      border: 2px solid #4ecdc4;
+      padding: 1.25rem; /* 20px/16px = 1.25rem */
+    }
+    
+    .header-rem h2 {
+      font-size: 2rem; /* 32px/16px = 2rem */
+      padding-bottom: 0.94rem; /* 15px/16px = 0.94rem */
+    }
+    
+    .header-rem p {
+      font-size: 1rem;
+    }
+    
+    /* Media query for mobile screens */
+    @media (max-width: 768px) {
+      /* Adjust the basic font size */
+      html {
+        font-size: 14px; /* All rem values adjust proportionally */
+      }
+      
+      /* Stack the elements */
+      .container {
+        flex-direction: column;
+      }
+      
+      /* Fixed width header will cause issues */
+      .header-px {
+        width: 100%; /* Force it to be responsive */
+        /* But the font sizes won't adjust */
+      }
+      
+      /* The rem-based header will adjust everything proportionally */
+    }
+  </style>
+</head>
+<body>
+  <h1>Header Section: px vs rem</h1>
+  
+  <div class="container">
+    <div class="header-px">
+      <h2>Fixed Width Header (px)</h2>
+      <p>This header has a fixed width of 500px and uses pixel-based measurements for font sizes and spacing.</p>
+      <p>On smaller screens, this fixed width can cause layout problems, and the text sizes won't adjust.</p>
+    </div>
+    
+    <div class="header-rem">
+      <h2>Responsive Header (rem)</h2>
+      <p>This header uses width: 100% with a max-width in rem units, and all typography uses rem.</p>
+      <p>On smaller screens, everything scales proportionally when we adjust the root font size in the media query.</p>
+    </div>
+  </div>
+</body>
+</html>

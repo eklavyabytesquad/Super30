@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Images</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    
+    h1 {
+      margin-bottom: 20px;
+    }
+    
+    .container {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .section {
+      flex: 1;
+    }
+    
+    h2 {
+      margin-bottom: 15px;
+    }
+    
+    /* Non-responsive image */
+    .image-px {
+      width: 400px; /* Fixed width */
+      height: 250px;
+      background-color: #ddd;
+      border: 2px solid #ff6b6b;
+    }
+    
+    /* Responsive image */
+    .image-responsive {
+      width: 100%; /* Uses full container width */
+      max-width: 400px; /* But never gets wider than this */
+      height: auto; /* Height adjusts to maintain aspect ratio */
+      aspect-ratio: 16/10; /* Maintains aspect ratio even without height */
+      background-color: #ddd;
+      border: 2px solid #4ecdc4;
+    }
+    
+    /* Media query for mobile screens */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      
+      /* The fixed-width image will cause horizontal scrolling */
+      /* The responsive image will adjust to the container width */
+    }
+  </style>
+</head>
+<body>
+  <h1>Image Responsiveness</h1>
+  
+  <div class="container">
+    <div class="section">
+      <h2>Non-Responsive Image (fixed px)</h2>
+      <div class="image-px"></div>
+      <p style="margin-top: 10px;">
+        This image has a fixed width of 400px. On narrow screens, 
+        it will cause horizontal scrolling or overflow its container.
+      </p>
+    </div>
+    
+    <div class="section">
+      <h2>Responsive Image (%, max-width, aspect-ratio)</h2>
+      <div class="image-responsive"></div>
+      <p style="margin-top: 10px;">
+        This image uses width: 100% to fill its container, max-width 
+        to limit its size, and aspect-ratio to maintain proportions.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

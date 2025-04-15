@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Typography</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Base font size (important for rem) */
+    html {
+      font-size: 16px; /* This is the reference point for rem units */
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    
+    h1 {
+      margin-bottom: 20px;
+    }
+    
+    .container {
+      display: flex;
+      gap: 20px;
+    }
+    
+    /* Non-responsive typography (px) */
+    .typography-px {
+      flex: 1;
+      border: 2px solid #ff6b6b;
+      padding: 20px;
+    }
+    
+    .typography-px h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+    
+    .typography-px p {
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    
+    /* Responsive typography (rem) */
+    .typography-rem {
+      flex: 1;
+      border: 2px solid #4ecdc4;
+      padding: 1.25rem; /* 20px / 16px = 1.25rem */
+    }
+    
+    .typography-rem h2 {
+      font-size: 1.75rem; /* 28px / 16px = 1.75rem */
+      margin-bottom: 0.938rem; /* 15px / 16px = 0.938rem */
+    }
+    
+    .typography-rem p {
+      font-size: 1rem; /* 16px / 16px = 1rem */
+      margin-bottom: 0.938rem;
+    }
+    
+    /* Media query for mobile screens */
+    @media (max-width: 768px) {
+      /* Reduce base font size on smaller screens */
+      html {
+        font-size: 14px;
+      }
+      
+      /* Stack the sections instead of showing side by side */
+      .container {
+        flex-direction: column;
+      }
+      
+      /* Fixed px sizes DON'T change when screen gets smaller */
+      /* But rem sizes will adjust with html font-size change */
+    }
+  </style>
+</head>
+<body>
+  <h1>Typography: px vs rem</h1>
+  
+  <div class="container">
+    <div class="typography-px">
+      <h2>Typography with Fixed Units (px)</h2>
+      <p>This heading is 28px and this text is 16px. These sizes are fixed and don't adapt to device size or user preferences.</p>
+      <p>On mobile screens, this text stays exactly 16px, which might be too large for the layout or too small for readability.</p>
+    </div>
+    
+    <div class="typography-rem">
+      <h2>Typography with Relative Units (rem)</h2>
+      <p>This heading is 1.75rem and this text is 1rem. These sizes adjust relative to the root font size.</p>
+      <p>On mobile screens, we reduce the root font size to 14px, and all rem units scale down proportionally, making content fit better.</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Card Grid</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    
+    h1, h2 {
+      margin-bottom: 20px;
+    }
+    
+    .card {
+      background-color: #f8f8f8;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .card h3 {
+      margin-bottom: 10px;
+    }
+    
+    /* Non-responsive grid (px) */
+    .grid-px {
+      border: 2px solid #ff6b6b;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .grid-px .cards {
+      display: grid;
+      grid-template-columns: 200px 200px 200px; /* Fixed width columns */
+      gap: 20px;
+    }
+    
+    /* Responsive grid (fr (Fraction) units) */
+    .grid-rem {
+      border: 2px solid #4ecdc4;
+      padding: 20px;
+    }
+    
+    .grid-rem .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr; /* Flexible columns */
+      gap: 20px;
+    }
+    
+    /* Media queries for responsive layout */
+    @media (max-width: 720px) {
+      /* Tablet layout: 2 columns */
+      .grid-rem .cards {
+        grid-template-columns: 1fr 1fr; /* 2 columns on medium screens */
+      }
+      
+      /* Non-responsive grid stays at 3 columns of 200px
+         This will cause horizontal scrolling! */
+
+         .grid-px .cards {
+        grid-template-columns: 1fr 1fr;
+        /* But we'll still have the issue of cards being too narrow */
+      }
+    }
+    
+    @media (max-width: 600px) {
+      /* Mobile layout: 1 column */
+      .grid-rem .cards {
+        grid-template-columns: 1fr;
+      }
+      
+      /* Force the non-responsive grid to be somewhat usable */
+      .grid-px .cards {
+        grid-template-columns: 1fr;
+        /* But we'll still have the issue of cards being too narrow */
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Card Grid Layouts</h1>
+  
+  <div class="grid-px">
+    <h2>Non-Responsive Grid (fixed px)</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Card 1</h3>
+        <p>This grid uses fixed 200px columns, which won't adapt to screen width.</p>
+      </div>
+      <div class="card">
+        <h3>Card 2</h3>
+        <p>On smaller screens, this causes horizontal scrolling.</p>
+      </div>
+      <div class="card">
+        <h3>Card 3</h3>
+        <p>We need media queries to force it to reflow.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="grid-rem">
+    <h2>Responsive Grid (fr units)</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Card 1</h3>
+        <p>This grid uses flexible 1fr columns that share available space.</p>
+      </div>
+      <div class="card">
+        <h3>Card 2</h3>
+        <p>On smaller screens, media queries adjust the layout gracefully.</p>
+      </div>
+      <div class="card">
+        <h3>Card 3</h3>
+        <p>The layout flows from 3 columns to 2 columns to 1 column as the screen gets smaller.</p>
+      </div>
+      <div class="card">
+        <h3>Card 3</h3>
+        <p>The layout flows from 3 columns to 2 columns to 1 column as the screen gets smaller.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

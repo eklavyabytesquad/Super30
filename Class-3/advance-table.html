@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Advanced HTML Table Techniques</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f5ff;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .responsive-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        
+        .responsive-table caption {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+            caption-side: top;
+        }
+        
+        .responsive-table thead tr {
+            background-color: #4285f4;
+            color: white;
+        }
+        
+        .responsive-table th, 
+        .responsive-table td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        
+        .responsive-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+        
+        .responsive-table tfoot {
+            font-weight: bold;
+            background-color: #e6e6e6;
+        }
+        
+        .colspan-2 {
+            background-color: #e3f2fd;
+            text-align: center;
+        }
+        
+        /* Accessibility - better focus states */
+        .responsive-table th:focus,
+        .responsive-table td:focus {
+            outline: 2px solid #4285f4;
+        }
+    </style>
+</head>
+<body>
+    <table class="responsive-table">
+    
+
+
+        <caption>SRM University Programs - Advanced Table Features</caption>
+
+
+
+        <thead>
+                <th class="sortable">Department</th>
+                <th class="sortable">Courses Offered</th>
+                <th class="sortable">Duration</th>
+                <th class="sortable">Seats Available</th>
+        </thead>
+
+
+
+        <tbody>
+            <tr class="highlight">
+                <td rowspan="2">Computer Science</td>
+                <td>B.Tech in Computer Science and Engineering</td>
+                <td>4 years</td>
+                <td>120</td>
+            </tr>
+
+            <tr>
+                <td>B.Tech in Artificial Intelligence and Data Science</td>
+                <td>4 years</td>
+                <td>60</td>
+            </tr>
+
+            <tr>
+                <td>Electronics</td>
+                <td>B.Tech in Electronics and Communication</td>
+                <td>4 years</td>
+                <td>90</td>
+            </tr>
+
+            <tr>
+                <td>Mechanical</td>
+                <td>B.Tech in Mechanical Engineering with specialization in Automotive Engineering</td>
+                <td>4 years</td>
+                <td>60</td>
+            </tr>
+
+            <tr>
+                <td colspan="4" class="colspan-2">
+                    <strong>Postgraduate Programs</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>Computer Science</td>
+                <td>M.Tech in CSE</td>
+                <td>2 years</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>Business Studies</td>
+                <td>MBA in Technology Management</td>
+                <td>2 years</td>
+                <td>60</td>
+            </tr>
+        </tbody>
+
+
+
+        <tfoot>
+                <td colspan="2">Total Programs</td>
+                <td colspan="2">6</td>
+        </tfoot>
+
+
+        
+    </table>
+
+
+</body>
+</html>

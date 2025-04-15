@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relative vs Absolute Positioning</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    
+    h1 {
+      margin-bottom: 20px;
+    }
+    
+    .container {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+    
+    .section {
+      flex: 1;
+    }
+    
+    h2 {
+      margin-bottom: 15px;
+    }
+    
+    /* Box Styling */
+    .parent-box {
+      width: 250px;
+      height: 250px;
+      background-color: #f0f0f0;
+      border: 2px dashed #666;
+      margin-bottom: 20px;
+    }
+    
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: #4ecdc4;
+      color: white;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Position: Static (default) */
+    .static-box {
+      background-color: #ff6b6b;
+      /* Default position is static - follows normal flow */
+    }
+    
+    /* Position: Relative */
+    .parent-relative {
+      position: relative; /* Establishes positioning context */
+    }
+    
+    .relative-box {
+      position: relative;
+      top: 10px;
+        left: 20px;
+      /* Offset from its normal position */
+    }
+    
+    /* Position: Absolute */
+    .absolute-box {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      /* Positioned relative to nearest positioned ancestor */
+    }
+    
+    /* Media queries for responsive layout */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      
+      .parent-box {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Relative vs Absolute Positioning</h1>
+  
+  <div class="container">
+    <!-- Static Positioning (Default) -->
+    <div class="section">
+      <h2>Static Position (Default)</h2>
+      <div class="parent-box">
+        <div class="box">Static</div>
+        <p>Default position is static, which follows the normal document flow.</p>
+      </div>
+    </div>
+    
+    <!-- Relative Positioning -->
+    <div class="section">
+      <h2>Relative Position</h2>
+      <div class="parent-box">
+        <div class="box relative-box">Relative</div>
+        <p>Position: relative moves an element relative to its normal position.</p>
+        <p>top: 20px, left: 30px</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <!-- Absolute Positioning -->
+    <div class="section">
+      <h2>Absolute Position</h2>
+      <div class="parent-box parent-relative">
+        <div class="box absolute-box">Absolute</div>
+        <p>Position: absolute removes the element from the document flow and positions it relative to its nearest positioned ancestor.</p>
+        <p>top: 30px, right: 20px</p>
+      </div>
+      <p>Note: The parent div has position: relative to create a positioning context.</p>
+    </div>
+    
+    <!-- What happens without positioned parent -->
+    <div class="section">
+      <h2>Absolute (No Positioned Parent)</h2>
+      <div class="parent-box">
+        <div class="box absolute-box">Absolute</div>
+        <p>Without a positioned parent, the absolute element positions relative to the document body.</p>
+      </div>
+      <p>Note: This parent has no position set, so the box positions to the viewport.</p>
+    </div>
+  </div>
+</body>
+</html>
